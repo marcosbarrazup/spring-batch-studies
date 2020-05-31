@@ -1,0 +1,21 @@
+language: java
+
+sudo: false
+services:
+- docker
+
+
+before_script:
+  - sudo service postgresql stop
+script:
+  - docker-compose up --build -d postgres
+  - docker-compose ps
+
+after_success:
+- bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
+  - docker-compose down
+
+cache:
+    directories:
+    - $HOME/.m2
