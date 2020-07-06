@@ -1,9 +1,13 @@
 package com.example.springbatch.config;
 
-import com.example.springbatch.Customer;
-import com.example.springbatch.CustomerCSV;
+import com.example.springbatch.domain.Customer;
+import com.example.springbatch.csv.CustomerCSV;
+import com.example.springbatch.exceptions.CustomerNotFoundException;
+import com.example.springbatch.exceptions.ExistentAccountException;
+import com.example.springbatch.exceptions.ThereIsNoEligibleCampaignException;
 import com.example.springbatch.listener.ImportCustomerListener;
 import com.example.springbatch.processor.ImportCustomerProcessor;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -17,6 +21,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import javax.persistence.PersistenceException;
 
 @Configuration
 @EnableBatchProcessing
@@ -53,8 +59,10 @@ public class ImportCustomerBatchConfiguration {
                 .reader(importCustomerReader)
                 .processor(importCustomerProcessor)
                 .writer(importCustomerWriter)
+                .faultTolerant()
+                .skip(ExistentAccountException.class)
+                .skipLimit(Integer.MAX_VALUE)
                 .build();
     }
-
 
 }

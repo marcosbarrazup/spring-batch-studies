@@ -1,14 +1,16 @@
-package com.example.springbatch;
+package com.example.springbatch.domain;
 
-import lombok.*;
-import org.javamoney.moneta.Money;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.Month;
 import java.time.Year;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class BankStatement {
 
@@ -17,8 +19,8 @@ public class BankStatement {
     private Integer id;
     private Month month;
     private Year year;
-    private Money moneyIn;
-    private Money moneyOut;
+    private Double moneyIn;
+    private Double moneyOut;
 
     @OneToMany(mappedBy = "bankStatement")
     private List<Transaction> transactions;

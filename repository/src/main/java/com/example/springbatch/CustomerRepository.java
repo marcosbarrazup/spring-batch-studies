@@ -1,6 +1,6 @@
 package com.example.springbatch;
 
-import com.example.springbatch.Customer;
+import com.example.springbatch.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

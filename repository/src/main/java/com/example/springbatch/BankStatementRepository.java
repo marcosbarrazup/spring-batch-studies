@@ -1,8 +1,7 @@
 package com.example.springbatch;
 
-import com.example.springbatch.BankStatement;
-import com.example.springbatch.Customer;
-import org.javamoney.moneta.Money;
+import com.example.springbatch.domain.BankStatement;
+import com.example.springbatch.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

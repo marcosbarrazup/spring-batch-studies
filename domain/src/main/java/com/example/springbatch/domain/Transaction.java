@@ -1,11 +1,13 @@
-package com.example.springbatch;
+package com.example.springbatch.domain;
 
 import lombok.Data;
-import org.javamoney.moneta.Money;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Transaction {
 
@@ -14,7 +16,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
-    private Money value;
+    private Double value;
 
     @ManyToOne
     private Customer receiver;

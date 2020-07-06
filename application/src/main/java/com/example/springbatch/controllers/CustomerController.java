@@ -1,7 +1,7 @@
 package com.example.springbatch.controllers;
 
-import com.example.springbatch.Customer;
-import com.example.springbatch.CustomerDTO;
+import com.example.springbatch.domain.Customer;
+import com.example.springbatch.dto.CustomerDTO;
 import com.example.springbatch.CustomerService;
 import javassist.NotFoundException;
 import org.springframework.batch.core.*;
@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.*;
 import java.util.*;
 
 @RestController

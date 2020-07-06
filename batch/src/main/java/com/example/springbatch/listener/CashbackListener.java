@@ -1,5 +1,6 @@
 package com.example.springbatch.listener;
 
+import com.example.springbatch.CashbackRepository;
 import com.example.springbatch.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,12 +12,12 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class ImportCustomerListener  extends JobExecutionListenerSupport {
+public class CashbackListener extends JobExecutionListenerSupport {
 
-    private static final Logger log = LoggerFactory.getLogger(ImportCustomerListener.class);
+    private static final Logger log = LoggerFactory.getLogger(CashbackListener.class);
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private CashbackRepository cashbackRepository;
 
     @Override
     public void beforeJob(JobExecution jobExecution) {
@@ -27,7 +28,7 @@ public class ImportCustomerListener  extends JobExecutionListenerSupport {
     public void afterJob(JobExecution jobExecution) {
         if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
             log.info("!!! JOB FINISHED! Time to verify the results");
-            customerRepository.findAll().forEach(customer -> log.info("Found <" + customer.getName() + " in database"));
+            cashbackRepository.findAll().forEach(cashback -> log.info("Found cashback for " + cashback.getCustomer().getName() + " in database"));
         }
     }
 }

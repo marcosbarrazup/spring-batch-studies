@@ -1,5 +1,7 @@
-package com.example.springbatch;
+package com.example.springbatch.domain;
 
+import com.example.springbatch.domain.Customer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,14 +21,16 @@ public class Address {
     private String street;
     private String streetNumber;
     @ManyToOne
+    @JsonIgnore
     private Customer customer;
 
-    public Address(String country, String state, String city, String street, String streetNumber) {
+    public Address(String country, String state, String city, String street, String streetNumber, Customer customer) {
         this.country = country;
         this.state = state;
         this.city = city;
         this.street = street;
         this.streetNumber = streetNumber;
+        this.customer = customer;
     }
 
 
