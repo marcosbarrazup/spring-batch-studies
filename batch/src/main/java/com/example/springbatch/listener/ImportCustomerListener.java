@@ -26,8 +26,7 @@ public class ImportCustomerListener  extends JobExecutionListenerSupport {
     @Override
     public void afterJob(JobExecution jobExecution) {
         if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
-            log.info("!!! JOB FINISHED! Time to verify the results");
-            customerRepository.findAll().forEach(customer -> log.info("Found <" + customer.getName() + " in database"));
+            log.info("!!! Import Customer JOB FINISHED! Time to verify the results");
         }
     }
 }

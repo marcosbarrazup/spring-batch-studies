@@ -27,8 +27,7 @@ public class CashbackListener extends JobExecutionListenerSupport {
     @Override
     public void afterJob(JobExecution jobExecution) {
         if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
-            log.info("!!! JOB FINISHED! Time to verify the results");
-            cashbackRepository.findAll().forEach(cashback -> log.info("Found cashback for " + cashback.getCustomer().getName() + " in database"));
+            log.info("!!! Cashback JOB FINISHED! Time to verify the results");
         }
     }
 }
