@@ -76,11 +76,9 @@ public class CashbackBatchConfiguration {
                 .processor(cashbackProcessor)
                 .writer(compositeCashbackWriter)
                 .faultTolerant()
-                .retry(CustomerNotFoundException.class)
                 .skip(CustomerNotFoundException.class)
                 .skip(ThereIsNoEligibleCampaignException.class)
                 .skipLimit(Integer.MAX_VALUE)
-                .noSkip(FileNotFoundException.class)
                 .build();
     }
 
